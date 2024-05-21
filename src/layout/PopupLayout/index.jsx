@@ -1,4 +1,4 @@
-import { Alert, Divider } from 'antd';
+import { Divider } from 'antd';
 import { useContext, useEffect } from 'react';
 // import { SettingContext } from '@/context/settingContext';
 import { BASE_URL } from '@/store/Global';
@@ -13,13 +13,6 @@ function PopupDetails() {
   return (
     <ThemeAntd>
       <div className="container_wrapper">
-        <Alert
-          message={'理财好帮手，费率计算器让每分钱都清晰。'}
-          type="info"
-          showIcon
-          style={{ width: '100%' }}
-        />
-
         <RateCalculator />
       </div>
     </ThemeAntd>

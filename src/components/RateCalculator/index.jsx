@@ -1,4 +1,4 @@
-import { Form, Input, Button, Tooltip, App } from 'antd';
+import { Form, Input, Button, Tooltip, App, Alert } from 'antd';
 import {
   MoneyCollectOutlined,
   AccountBookOutlined,
@@ -6,6 +6,8 @@ import {
   CopyOutlined,
 } from '@ant-design/icons';
 import './index.less';
+import { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 
 const formItemLayout = {
   labelCol: {
@@ -21,6 +23,23 @@ const RateCalculator = () => {
 
   const { message } = App.useApp();
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // 默认选中第一个输入框
+    inputRef.current.focus();
+
+    // 获取utools文本框的内容
+    window.utools.onPluginEnter(async ({ code, type, payload, option }) => {
+      if (type === 'regex') {
+        form.setFieldsValue({
+          amount: payload,
+        });
+      }
+    });
+  }, []);
+
+  // 提交表单
   const handleSubmit = async (values) => {
     try {
       const amount = parseFloat(values.amount);
@@ -31,6 +50,12 @@ const RateCalculator = () => {
       form.setFieldsValue({
         handlingFee,
         actualAccount,
+      });
+
+      confetti({
+        particleCount: 200, // 发射的纸屑数量
+        spread: 70, // 纸屑散布角度
+        origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
       });
     } catch (errors) {
       console.error('校验失败', errors);
@@ -50,6 +75,14 @@ const RateCalculator = () => {
 
   return (
     <div className="wrapper">
+      <div className="alert">
+        <Alert
+          message={'费率计算器，让复杂的金融计算变得简单易懂。'}
+          type="info"
+          showIcon
+        />
+      </div>
+
       <Form
         {...formItemLayout}
         form={form}
@@ -57,8 +90,19 @@ const RateCalculator = () => {
         <Form.Item
           label="收款金额 (元)"
           name="amount"
-          rules={[{ required: true, message: '请填写数字' }]}>
+          rules={[
+            {
+              required: true,
+              message: '请填写收款金额',
+            },
+            {
+              pattern: /^[1-9]\d{0,9}(\.\d{2})?$/,
+              message: '请填写数字',
+            },
+          ]}>
           <Input
+            ref={inputRef}
+            allowClear
             prefix={<MoneyCollectOutlined />}
             placeholder="请输入收款金额"
           />
@@ -67,8 +111,15 @@ const RateCalculator = () => {
         <Form.Item
           label="费率 (%)"
           name="rate"
-          rules={[{ required: true, message: '请填写数字' }]}>
+          rules={[
+            { required: true, message: '请填写费率' },
+            {
+              pattern: /^(0(\.\d*[1-9])?|[1-9]\d*(\.\d{1,2})?)$/,
+              message: '请填写数字',
+            },
+          ]}>
           <Input
+            allowClear
             prefix={<AccountBookOutlined />}
             placeholder="请输入费率"
           />
