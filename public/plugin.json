@@ -1,0 +1,23 @@
+{
+  "pluginName": "费率计算器",
+  "description": "理财好帮手，费率计算器让每分钱都清晰。",
+  "main": "index.html",
+  "logo": "logo.png",
+  "version": "1.0.0",
+  "preload": "preload.js",
+  "pluginSetting": {
+    "single": true
+  },
+  "development": {
+    "main": "http://localhost:5173"
+  },
+  "features": [
+    {
+      "code": "费率计算",
+      "explain": "费率计算",
+      "cmds": [
+        "费率计算"
+      ]
+    }
+  ]
+}

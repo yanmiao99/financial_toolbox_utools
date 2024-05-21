@@ -1,0 +1,40 @@
+{
+  "name": "watermark_utools",
+  "description": "用于给图片添加水印",
+  "author": "yanmiao. <503084944@qq.com>",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "homepage": ".",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.6",
+    "antd": "^5.16.4",
+    "canvas-confetti": "^1.9.3",
+    "dayjs": "^1.11.10",
+    "html2canvas": "^1.4.1",
+    "konva": "^9.3.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "less": "^4.2.0",
+    "utools-api-types": "^5.0.0",
+    "vite": "^5.2.0",
+    "vite-plugin-utools": "0.5.5-beta.0"
+  }
+}
