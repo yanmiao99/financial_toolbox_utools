@@ -1,24 +1,101 @@
-import { Form, Input, Button, Tooltip, App, Alert } from 'antd';
+import {
+  Form,
+  Input,
+  Button,
+  App,
+  Row,
+  Col,
+  Radio,
+  Table,
+  Alert,
+  Tooltip,
+  Space,
+} from 'antd';
 import {
   MoneyCollectOutlined,
   AccountBookOutlined,
   PayCircleOutlined,
-  CopyOutlined,
+  QuestionCircleOutlined,
 } from '@ant-design/icons';
 import './index.less';
-import { useEffect, useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 
-const formItemLayout = {
-  labelCol: {
-    span: 4,
+const columns = [
+  {
+    title: '期数',
+    dataIndex: 'number',
+    key: 'number',
+    width: 100,
+    align: 'center',
   },
-  wrapperCol: {
-    span: 18,
+  {
+    title: '月供金额',
+    dataIndex: 'monthAmount',
+    key: 'monthAmount',
+    width: 100,
+    align: 'center',
   },
+  {
+    title: '月供拆解',
+    key: 'monthSplit',
+    align: 'center',
+    children: [
+      {
+        title: '本金',
+        dataIndex: 'monthPrincipal',
+        key: 'monthPrincipal',
+        align: 'center',
+      },
+      {
+        title: '利息',
+        dataIndex: 'monthInterest',
+        key: 'monthInterest',
+        align: 'center',
+      },
+    ],
+  },
+  {
+    title: '累计还款',
+    key: 'total',
+    align: 'center',
+    children: [
+      {
+        title: '本金',
+        dataIndex: 'totalPrincipal',
+        key: 'totalPrincipal',
+        align: 'center',
+      },
+      {
+        title: '利息',
+        dataIndex: 'totalInterest',
+        key: 'totalInterest',
+        align: 'center',
+      },
+    ],
+  },
+];
+
+const initValues = {
+  amount: 10000,
+  term: 12,
+  annualRate: 24,
+  repaymentMethod: 1,
 };
 
-const RateCalculator = () => {
+const initTotalAmount = {
+  number: '合计',
+  monthAmount: '/',
+  monthPrincipal: '/',
+  monthInterest: '/',
+  totalPrincipal: '/',
+  totalInterest: '/',
+};
+
+function RateCalculator() {
+  const [columnsData, setColumnsData] = useState([]); // 表格数据
+  const [totalAmount, setTotalAmount] = useState(initTotalAmount); // 统计数据
+
   const [form] = Form.useForm();
 
   const { message } = App.useApp();
@@ -26,7 +103,6 @@ const RateCalculator = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // 默认选中第一个输入框
     inputRef.current.focus();
 
     // 获取utools文本框的内容
@@ -40,152 +116,320 @@ const RateCalculator = () => {
   }, []);
 
   // 提交表单
-  const handleSubmit = async (values) => {
-    try {
-      const amount = parseFloat(values.amount);
-      const rate = parseFloat(values.rate);
-      const handlingFee = (amount * rate * 0.01).toFixed(2);
-      const actualAccount = (amount - handlingFee).toFixed(2);
+  const handleSubmit = (values) => {
+    const { amount, term, annualRate, repaymentMethod } = values;
 
-      form.setFieldsValue({
-        handlingFee,
-        actualAccount,
-      });
+    if (repaymentMethod === 1) {
+      // 等额本息：月供=本金x月利率x(1+月利率)^还款月数÷((1+月利率)^还款月数-1)
+      const data = [];
+      const monthlyInterestRate = annualRate / 12 / 100;
+      const pow = Math.pow(1 + monthlyInterestRate, term);
+      const monthAmount = (amount * monthlyInterestRate * pow) / (pow - 1);
+      let remainingPrincipal = amount;
+      let totalPrincipal = 0;
+      let totalInterest = 0;
 
-      confetti({
-        particleCount: 200, // 发射的纸屑数量
-        spread: 70, // 纸屑散布角度
-        origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
-      });
-    } catch (errors) {
-      console.error('校验失败', errors);
+      for (let i = 1; i <= term; i++) {
+        const monthInterest = remainingPrincipal * monthlyInterestRate;
+        const monthPrincipal = monthAmount - monthInterest;
+        totalPrincipal += monthPrincipal;
+        totalInterest += monthInterest;
+        remainingPrincipal -= monthPrincipal;
+
+        const rowData = {
+          key: i,
+          number: `第${i}期`,
+          monthAmount: monthAmount.toFixed(2),
+          monthPrincipal: monthPrincipal.toFixed(2),
+          monthInterest: monthInterest.toFixed(2),
+          totalPrincipal: totalPrincipal.toFixed(2),
+          totalInterest: totalInterest.toFixed(2),
+          remainingPrincipal: remainingPrincipal.toFixed(2),
+        };
+
+        data.push(rowData);
+      }
+
+      // 合计
+      const totalRowData = {
+        number: '合计',
+        monthAmount: (monthAmount * term).toFixed(2),
+        monthPrincipal: amount.toFixed(2),
+        monthInterest: (monthAmount * term - amount).toFixed(2),
+        totalPrincipal: amount.toFixed(2),
+        totalInterest: (monthAmount * term - amount).toFixed(2),
+      };
+
+      setTotalAmount(totalRowData);
+      setColumnsData(data);
     }
+
+    if (repaymentMethod === 2) {
+      // 等额本金：月供=本金÷月数x(1+年化利率÷12x剩余还款期数)
+      const data = [];
+      const monthlyInterestRate = annualRate / 12 / 100;
+      const monthPrincipal = amount / term;
+      let remainingPrincipal = amount;
+      let totalPrincipal = 0;
+      let totalInterest = 0;
+
+      for (let i = 1; i <= term; i++) {
+        const monthInterest = remainingPrincipal * monthlyInterestRate;
+        totalPrincipal += monthPrincipal;
+        totalInterest += monthInterest;
+        remainingPrincipal -= monthPrincipal;
+
+        const rowData = {
+          key: i,
+          number: `第${i}期`,
+          monthAmount: (monthPrincipal + monthInterest).toFixed(2),
+          monthPrincipal: monthPrincipal.toFixed(2),
+          monthInterest: monthInterest.toFixed(2),
+          totalPrincipal: totalPrincipal.toFixed(2),
+          totalInterest: totalInterest.toFixed(2),
+        };
+
+        data.push(rowData);
+      }
+
+      // 合计
+      const totalRowData = {
+        number: '合计',
+        monthAmount: (amount + totalInterest).toFixed(2),
+        monthPrincipal: amount.toFixed(2),
+        monthInterest: totalInterest.toFixed(2),
+        totalPrincipal: amount.toFixed(2),
+        totalInterest: totalInterest.toFixed(2),
+      };
+
+      setTotalAmount(totalRowData);
+      setColumnsData(data);
+    }
+
+    confetti({
+      particleCount: 200, // 发射的纸屑数量
+      spread: 70, // 纸屑散布角度
+      origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
+    });
   };
 
-  const handleCopy = (field) => {
-    const value = form.getFieldValue(field);
+  // 表单值变化
+  const handleValuesChange = (changedValues, allValues) => {
+    // 重置表格数据
+    setColumnsData([]);
+    setTotalAmount(initTotalAmount);
+  };
 
-    if (value) {
-      navigator.clipboard.writeText(value);
-      message.success('复制成功');
-    } else {
-      message.error('暂无内容可复制');
+  // 表单配置
+  const formConfig = [
+    {
+      label: '金额 (元)',
+      name: 'amount',
+      type: 'input',
+      rules: [{ required: true, message: '请填写金额' }],
+      icon: <MoneyCollectOutlined />,
+      inputRef: inputRef,
+    },
+    {
+      label: '期限 (月)',
+      name: 'term',
+      type: 'input',
+      rules: [{ required: true, message: '请填写期限' }],
+      icon: <AccountBookOutlined />,
+    },
+    {
+      label: '年化利率 (%)',
+      name: 'annualRate',
+      type: 'input',
+      rules: [
+        { required: true, message: '请填写年化利率' },
+        {
+          pattern: /^(0(\.\d*[1-9])?|[1-9]\d*(\.\d{1,2})?)$/,
+          message: '请填写数字',
+        },
+      ],
+      icon: <PayCircleOutlined />,
+    },
+    {
+      label: '还款方式',
+      name: 'repaymentMethod',
+      type: 'radio',
+      options: [
+        {
+          label: '等额本息',
+          value: 1,
+          tooltipText: '每月还款金额相同，但每月还款本金和利息比例不同',
+        },
+        {
+          label: '等额本金',
+          value: 2,
+          tooltipText: '每月还款本金相同，但每月还款利息递减',
+        },
+      ],
+    },
+  ];
+
+  // 渲染表单
+  const renderFormItem = (item) => {
+    let formItem = null;
+
+    if (item.type === 'input') {
+      formItem = (
+        <Form.Item
+          label={item.label}
+          name={item.name}
+          rules={item.rules}>
+          <Input
+            ref={item.inputRef}
+            allowClear
+            prefix={item.icon}
+            placeholder={item.placeholder || '请输入'}
+          />
+        </Form.Item>
+      );
+    } else if (item.type === 'radio') {
+      formItem = (
+        <Form.Item
+          label={item.label}
+          name={item.name}
+          rules={item.rules}>
+          <Radio.Group style={{ width: '100%' }}>
+            {item.options.map((option) => (
+              <Radio.Button
+                style={{ width: '50%', textAlign: 'center' }}
+                key={option.value}
+                value={option.value}>
+                <Tooltip
+                  placement="top"
+                  title={option.tooltipText}>
+                  <Space>
+                    {option.label}
+                    <QuestionCircleOutlined />
+                  </Space>
+                </Tooltip>
+              </Radio.Button>
+            ))}
+          </Radio.Group>
+        </Form.Item>
+      );
     }
+
+    return formItem;
   };
 
   return (
-    <div className="wrapper">
+    <div className="rate_calculator">
       <div className="alert">
         <Alert
-          message={'费率计算器，让复杂的金融计算变得简单易懂。'}
+          message={'用于计算等额本息和等额本金的还款计划'}
           type="info"
           showIcon
         />
       </div>
 
       <Form
-        {...formItemLayout}
+        onValuesChange={handleValuesChange}
         form={form}
+        layout={'vertical'}
+        initialValues={initValues}
         onFinish={handleSubmit}>
-        <Form.Item
-          label="收款金额 (元)"
-          name="amount"
-          rules={[
-            {
-              required: true,
-              message: '请填写收款金额',
-            },
-            {
-              pattern: /^[1-9]\d{0,9}(\.\d{2})?$/,
-              message: '请填写数字',
-            },
-          ]}>
-          <Input
-            ref={inputRef}
-            allowClear
-            prefix={<MoneyCollectOutlined />}
-            placeholder="请输入收款金额"
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="费率 (%)"
-          name="rate"
-          rules={[
-            { required: true, message: '请填写费率' },
-            {
-              pattern: /^(0(\.\d*[1-9])?|[1-9]\d*(\.\d{1,2})?)$/,
-              message: '请填写数字',
-            },
-          ]}>
-          <Input
-            allowClear
-            prefix={<AccountBookOutlined />}
-            placeholder="请输入费率"
-          />
-        </Form.Item>
-
-        <Form.Item
-          shouldUpdate
-          label="手续费 (元)"
-          name="handlingFee">
-          <Input
-            disabled
-            prefix={<PayCircleOutlined />}
-            suffix={
-              <Tooltip
-                title="点击复制"
-                placement="top">
-                <CopyOutlined onClick={() => handleCopy('handlingFee')} />
-              </Tooltip>
-            }
-            placeholder="自动计算得出"
-          />
-        </Form.Item>
-
-        <Form.Item
-          shouldUpdate
-          label="实际到账 (元)"
-          name="actualAccount">
-          <Input
-            disabled
-            prefix={<PayCircleOutlined />}
-            suffix={
-              <Tooltip
-                title="点击复制"
-                placement="top">
-                <CopyOutlined onClick={() => handleCopy('actualAccount')} />
-              </Tooltip>
-            }
-            placeholder="自动计算得出"
-          />
-        </Form.Item>
-
-        <Form.Item
-          wrapperCol={{
-            offset: 4,
-            span: 18,
-          }}>
-          <Button
-            type="primary"
-            block
-            htmlType="submit">
-            计算
-          </Button>
-        </Form.Item>
+        <Row gutter={24}>
+          {formConfig.map((item, index) => (
+            <Col
+              span={12}
+              key={index}>
+              {renderFormItem(item)}
+            </Col>
+          ))}
+          <Col
+            span={24}
+            key={'submit'}>
+            <Form.Item>
+              <Button
+                type="primary"
+                block
+                htmlType="submit">
+                计算
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
       </Form>
 
       <div className="tips">
+        <p>等额本金：月供=本金÷月数x(1+年化利率÷12x剩余还款期数)</p>
         <p>
-          计算原理：假如收款10000元，手续费率为0.6%，那么实际到帐金额是： 10000
-          - 10000 * 0.6% = 10000 - 10000 * 0.6 * 0.01 = 9940(元);
-        </p>
-        <p>
-          根据现行的《中国银联入网机构银行卡跨行交易收益分配办法》，银行卡收单业务的结算手续费全部由商户承担，但不同行业所实行的费率不同，费率标准从0.5%到4%不等。一般来说，零售业的刷卡手续费率在0.8%-1%，超市是0.5%，餐饮业为2%;
+          等额本息：月供=本金x月利率x(1+月利率)^还款月数÷((1+月利率)^还款月数-1)
         </p>
       </div>
+
+      <Table
+        columns={columns}
+        dataSource={columnsData}
+        bordered
+        size={'small'}
+        pagination={false}
+        sticky={{
+          offsetHeader: 64,
+        }}
+        summary={() => {
+          return (
+            <Table.Summary fixed="top">
+              <Table.Summary.Row>
+                {[1, 2, 3, 4, 5, 6].map((item, index) => {
+                  return (
+                    <Table.Summary.Cell
+                      index={index}
+                      key={index}>
+                      <div className="summary_cell">
+                        {index === 0 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.number}
+                          </div>
+                        )}
+                        {index === 1 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.monthAmount}
+                          </div>
+                        )}
+
+                        {index === 2 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.monthPrincipal}
+                          </div>
+                        )}
+
+                        {index === 3 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.monthInterest}
+                          </div>
+                        )}
+
+                        {index === 4 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.totalPrincipal}
+                          </div>
+                        )}
+
+                        {index === 5 && (
+                          <div className="summary_cell_item">
+                            {totalAmount.totalInterest}
+                          </div>
+                        )}
+                      </div>
+                    </Table.Summary.Cell>
+                  );
+                })}
+              </Table.Summary.Row>
+            </Table.Summary>
+          );
+        }}
+        // scroll={{
+        //   y: 240,
+        // }}
+      />
     </div>
   );
-};
+}
 
 export default RateCalculator;

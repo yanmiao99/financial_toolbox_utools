@@ -1,12 +1,24 @@
-.wrapper {
+.rate_calculator {
+  .summary_cell {
+    text-align: center;
+    &:empty::before {
+      content: '/';
+    }
+
+    .summary_cell_item {
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
   .alert {
     margin-bottom: 20px;
   }
+
   .tips {
     font-size: 14px;
     color: #999;
-    margin-top: 10px;
-    padding: 0 40px;
-    line-height: 2em;
+    margin: 0;
+    padding: 0;
   }
 }

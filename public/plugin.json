@@ -1,9 +1,9 @@
 {
   "pluginName": "费率计算器",
-  "description": "理财好帮手，费率计算器让每分钱都清晰。",
+  "description": "理财好帮手，让你掌握每一分钱💰",
   "main": "index.html",
   "logo": "logo.png",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "preload": "preload.js",
   "pluginSetting": {
     "single": true
@@ -13,13 +13,39 @@
   },
   "features": [
     {
-      "code": "费率计算",
+      "code": "default",
+      "explain": "理财工具箱",
+      "icon": "logo.png",
+      "cmds": [
+        "理财工具箱",
+        "理财工具",
+        "理财"
+      ]
+    },
+    {
+      "code": "fee",
       "explain": "费率计算",
+      "icon": "fee.png",
       "cmds": [
         "费率计算",
         {
           "type": "regex",
           "label": "费率计算",
+          "match": "/^[1-9]\\d{0,9}(\\.\\d{2})?$/",
+          "minLength": 1,
+          "maxLength": 10
+        }
+      ]
+    },
+    {
+      "code": "rate",
+      "explain": "利率计算",
+      "icon": "rate.png",
+      "cmds": [
+        "利率计算",
+        {
+          "type": "regex",
+          "label": "利率计算",
           "match": "/^[1-9]\\d{0,9}(\\.\\d{2})?$/",
           "minLength": 1,
           "maxLength": 10
