@@ -115,9 +115,23 @@ function RateCalculator() {
     });
   }, []);
 
+  // 跳转到浏览器
+  const handleToBrowser = () => {
+    window.utools.shellOpenExternal(
+      'http://www.conghua.gov.cn/zmhdzskgjj/content/post_9361196.html'
+    );
+  };
+
   // 提交表单
   const handleSubmit = (values) => {
-    const { amount, term, annualRate, repaymentMethod } = values;
+    const tempValues = {
+      amount: parseFloat(values.amount),
+      term: parseInt(values.term),
+      annualRate: parseFloat(values.annualRate),
+      repaymentMethod: Number(values.repaymentMethod),
+    };
+
+    const { amount, term, annualRate, repaymentMethod } = tempValues;
 
     if (repaymentMethod === 1) {
       // 等额本息：月供=本金x月利率x(1+月利率)^还款月数÷((1+月利率)^还款月数-1)
@@ -206,11 +220,13 @@ function RateCalculator() {
       setColumnsData(data);
     }
 
-    confetti({
-      particleCount: 200, // 发射的纸屑数量
-      spread: 70, // 纸屑散布角度
-      origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
-    });
+    // message.success('计算成功');
+
+    // confetti({
+    //   particleCount: 200, // 发射的纸屑数量
+    //   spread: 70, // 纸屑散布角度
+    //   origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
+    // });
   };
 
   // 表单值变化
@@ -218,6 +234,8 @@ function RateCalculator() {
     // 重置表格数据
     setColumnsData([]);
     setTotalAmount(initTotalAmount);
+
+    handleSubmit(allValues);
   };
 
   // 表单配置
@@ -226,7 +244,13 @@ function RateCalculator() {
       label: '金额 (元)',
       name: 'amount',
       type: 'input',
-      rules: [{ required: true, message: '请填写金额' }],
+      rules: [
+        { required: true, message: '请填写金额' },
+        {
+          pattern: /^(0(\.\d*[1-9])?|[1-9]\d*(\.\d{1,2})?)$/,
+          message: '请填写数字',
+        },
+      ],
       icon: <MoneyCollectOutlined />,
       inputRef: inputRef,
     },
@@ -234,7 +258,13 @@ function RateCalculator() {
       label: '期限 (月)',
       name: 'term',
       type: 'input',
-      rules: [{ required: true, message: '请填写期限' }],
+      rules: [
+        { required: true, message: '请填写期限' },
+        {
+          pattern: /^[1-9]\d*$/,
+          message: '请填写整数',
+        },
+      ],
       icon: <AccountBookOutlined />,
     },
     {
@@ -341,7 +371,7 @@ function RateCalculator() {
               {renderFormItem(item)}
             </Col>
           ))}
-          <Col
+          {/* <Col
             span={24}
             key={'submit'}>
             <Form.Item>
@@ -352,15 +382,15 @@ function RateCalculator() {
                 计算
               </Button>
             </Form.Item>
-          </Col>
+          </Col> */}
         </Row>
       </Form>
 
       <div className="tips">
-        <p>等额本金：月供=本金÷月数x(1+年化利率÷12x剩余还款期数)</p>
-        <p>
-          等额本息：月供=本金x月利率x(1+月利率)^还款月数÷((1+月利率)^还款月数-1)
-        </p>
+        <Space onClick={handleToBrowser}>
+          什么是等额本金和等额本息
+          <QuestionCircleOutlined />
+        </Space>
       </div>
 
       <Table
