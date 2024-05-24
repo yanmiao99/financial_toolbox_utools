@@ -52,11 +52,13 @@ const FeeCalculator = () => {
         actualAccount,
       });
 
-      confetti({
-        particleCount: 200, // 发射的纸屑数量
-        spread: 70, // 纸屑散布角度
-        origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
-      });
+      // confetti({
+      //   particleCount: 200, // 发射的纸屑数量
+      //   spread: 70, // 纸屑散布角度
+      //   origin: { y: 1.2 }, // 纸屑发射的起始位置偏上
+      // });
+
+      message.success('计算成功');
     } catch (errors) {
       console.error('校验失败', errors);
     }

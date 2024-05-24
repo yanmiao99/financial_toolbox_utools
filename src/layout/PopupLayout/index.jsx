@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ThemeAntd } from '@/theme';
 import FeeCalculator from '@/components/FeeCalculator';
 import RateCalculator from '@/components/RateCalculator';
+import FooterBtnGroup from '@/components/FooterBtnGroup';
 
 import './index.less';
 
@@ -53,6 +54,7 @@ function PopupDetails() {
           items={tabList}
         />
       </div>
+      <FooterBtnGroup />
     </ThemeAntd>
   );
 }
