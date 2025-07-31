@@ -22,23 +22,28 @@ const initTabList = [
 
 function PopupDetails() {
   const [currentTab, setCurrentTab] = useState([]);
-  const [tabList, setTabList] = useState(initTabList);
+  const [tabList] = useState(initTabList);
 
   useEffect(() => {
     // 获取utools文本框的内容
-    window.utools.onPluginEnter(async ({ code, type, payload, option }) => {
-      if (code && code !== 'default') {
-        // 根据关键词进入不同的 tab
-        initTabList.forEach((item) => {
-          if (item.key === code) {
-            setCurrentTab(code);
-          }
-        });
-      } else {
-        setCurrentTab(initTabList[0].key);
-      }
-    });
-  }, []);
+    if (window.utools && window.utools.onPluginEnter) {
+      window.utools.onPluginEnter(async ({ code }) => {
+        if (code && code !== 'default') {
+          // 根据关键词进入不同的 tab
+          initTabList.forEach((item) => {
+            if (item.key === code) {
+              setCurrentTab(code);
+            }
+          });
+        } else {
+          setCurrentTab(initTabList[0].key);
+        }
+      });
+    } else {
+       // 开发环境下默认设置第一个tab
+       setCurrentTab(initTabList[0].key);
+     }
+   }, []);
 
   const handleTabChange = (key) => {
     setCurrentTab(key);
