@@ -1,8 +1,8 @@
 import { Tabs } from 'antd';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeAntd } from '@/theme';
-import FeeCalculator from '@/components/FeeCalculator';
-import RateCalculator from '@/components/RateCalculator';
+import FeeCalculator from '@/pages/FeeCalculator';
+import RecordList from '@/pages/RecordList';
 import FooterBtnGroup from '@/components/FooterBtnGroup';
 
 import './index.less';
@@ -14,9 +14,9 @@ const initTabList = [
     children: <FeeCalculator />,
   },
   {
-    key: 'rate',
-    label: '利率计算',
-    children: <RateCalculator />,
+    key: 'record',
+    label: '理财记录',
+    children: <RecordList />,
   },
 ];
 

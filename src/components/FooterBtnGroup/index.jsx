@@ -155,16 +155,16 @@ const FooterBtnGroup = () => {
 
   return (
     <div className="footer_btn_group">
-      <Button
+      {/* <Button
         type="text"
         onClick={() => handleAbout('author')}>
         🧭 关于
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         type="text"
         onClick={() => handleAbout('WeChat_public')}>
         🤔 公众号
-      </Button>
+      </Button> */}
       {/* <Button
         type="text"
         onClick={() => handleAbout('setting')}>
@@ -175,13 +175,13 @@ const FooterBtnGroup = () => {
         onClick={() => handleUpdateLog()}>
         📖 更新日志
       </Button> */}
-      <Button
+      {/* <Button
         type="text"
         onClick={() => handleAppreciation()}>
         💰 赞赏
-      </Button>
+      </Button> */}
 
-      <Button
+      {/* <Button
         type="text"
         onClick={() => handleGoRemoveWatermark()}>
         <div
@@ -202,7 +202,7 @@ const FooterBtnGroup = () => {
           />
           视频去水印
         </div>
-      </Button>
+      </Button> */}
 
       <AppreciationDialog ref={appreciationDialogRef} />
     </div>

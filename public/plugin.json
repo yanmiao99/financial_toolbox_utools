@@ -16,11 +16,7 @@
       "code": "default",
       "explain": "理财工具箱",
       "icon": "logo.png",
-      "cmds": [
-        "理财工具箱",
-        "理财工具",
-        "理财"
-      ]
+      "cmds": ["理财工具箱", "理财工具", "理财"]
     },
     {
       "code": "fee",
@@ -31,21 +27,6 @@
         {
           "type": "regex",
           "label": "费率计算",
-          "match": "/^[1-9]\\d{0,9}(\\.\\d{2})?$/",
-          "minLength": 1,
-          "maxLength": 10
-        }
-      ]
-    },
-    {
-      "code": "rate",
-      "explain": "利率计算",
-      "icon": "rate.png",
-      "cmds": [
-        "利率计算",
-        {
-          "type": "regex",
-          "label": "利率计算",
           "match": "/^[1-9]\\d{0,9}(\\.\\d{2})?$/",
           "minLength": 1,
           "maxLength": 10
