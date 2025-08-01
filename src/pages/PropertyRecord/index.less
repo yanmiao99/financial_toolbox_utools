@@ -1,0 +1,177 @@
+.record_wrapper {
+  // 顶部工具栏
+  .record_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    .welcome_text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '👋';
+        font-size: 18px;
+      }
+    }
+
+    .header_actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+
+      .ant-btn {
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+        }
+
+        &.create_btn {
+          border: none;
+        }
+
+        &.logout_btn {
+          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+          border: none;
+          color: white;
+
+          &:hover {
+            background: linear-gradient(135deg, #ff5252 0%, #e53935 100%);
+          }
+        }
+      }
+    }
+  }
+
+  // 主要内容区域
+  .record_content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    min-height: 400px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  // 未登录状态的样式
+  .login_prompt {
+    text-align: center;
+    padding: 40px 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 10vh;
+
+    .login_icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .login_title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 12px;
+    }
+
+    .login_description {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .ant-btn {
+      height: 44px;
+      padding: 0 32px;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // 响应式设计
+  @media (max-width: 768px) {
+    padding: 12px;
+
+    .record_main_content {
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .record_header {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+
+      .header_actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .login_prompt {
+      margin-top: 5vh;
+      padding: 40px 20px;
+
+      .login_icon {
+        font-size: 48px;
+      }
+
+      .login_title {
+        font-size: 18px;
+      }
+    }
+  }
+
+  // 动画效果
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .record_main_content,
+  .login_prompt {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  // 加载状态
+  .loading_state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #6c757d;
+    font-size: 16px;
+  }
+}

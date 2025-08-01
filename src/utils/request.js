@@ -13,14 +13,14 @@ const service = axios.create({
   timeout: 30000,
 });
 
-// 获取本地存储的token
-const getToken = () => {
-  return JSON.parse(localStorage.getItem('userLoginInfo')).token;
-};
-
 // 请求拦截
 service.interceptors.request.use((req) => {
-  req.headers['Authorization'] = `Bearer ${getToken()}`;
+
+  const loginInfo = JSON.parse(localStorage.getItem('userLoginInfo'));
+  if (loginInfo) {
+    req.headers['Authorization'] = `Bearer ${loginInfo.token}`;
+  }
+
   return req;
 });
 

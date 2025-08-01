@@ -34,7 +34,7 @@ export const ThemeAntd = ({ children = null }) => {
         algorithm: themeMap[systemTheme].bgFn,
         cssVar: true,
         token: {
-          borderRadius: 0,
+          // borderRadius: 0,
           // colorPrimary: "#ff2e4d"
           // colorPrimary: '#73d13d',
           // colorPrimary: "#61d275",
