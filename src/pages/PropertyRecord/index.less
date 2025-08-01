@@ -42,6 +42,31 @@
           border: none;
         }
 
+        &.edit_group_btn {
+          background: #f6ffed;
+          border-color: #b7eb8f;
+          color: #52c41a;
+
+          &:hover {
+            background: #d9f7be;
+            border-color: #95de64;
+            color: #389e0d;
+          }
+        }
+
+        .create_card_btn {
+          background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+          border: none;
+          color: white;
+          font-weight: 500;
+
+          &:hover {
+            background: linear-gradient(135deg, #40a9ff 0%, #1890ff 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+          }
+        }
+
         &.logout_btn {
           background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
           border: none;
@@ -182,23 +207,6 @@
   // Tab内容样式
   .tab_content {
     min-height: 300px;
-    
-    .tab_content_header {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #f0f0f0;
-      
-      .edit_group_btn {
-        color: #1890ff;
-        
-        &:hover {
-          color: #40a9ff;
-          background-color: #f6ffed;
-        }
-      }
-    }
   }
 
   .card_list_container {

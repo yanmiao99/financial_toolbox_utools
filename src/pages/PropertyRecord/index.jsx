@@ -4,6 +4,7 @@ import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import './index.less';
 import LoginDialog from '@/components/LoginDialog';
 import PropertyGroupDialog from '@/components/PropertyGroupDialog';
+import PropertyCardDialog from '@/components/PropertyCardDialog';
 import PropertyCard from '@/components/PropertyCard';
 import PropertyCardDetail from '@/components/PropertyCardDetail';
 import {
@@ -18,6 +19,8 @@ function PropertyRecord() {
   const [userInfo, setUserInfo] = useState(null);
   const [showGroupDialog, setShowGroupDialog] = useState(false);
   const [editGroupData, setEditGroupData] = useState(null);
+  const [showCardDialog, setShowCardDialog] = useState(false);
+  const [editCardData, setEditCardData] = useState(null);
   const [groupList, setGroupList] = useState([]);
   const [activeGroupId, setActiveGroupId] = useState(null);
   const [showCardDetail, setShowCardDetail] = useState(false);
@@ -60,6 +63,12 @@ function PropertyRecord() {
   const handleCreateGroup = () => {
     setEditGroupData(null);
     setShowGroupDialog(true);
+  };
+
+  // 处理创建卡片
+  const handleCreateCard = () => {
+    setEditCardData(null);
+    setShowCardDialog(true);
   };
 
   // 获取分组列表
@@ -133,6 +142,14 @@ function PropertyRecord() {
     fetchGroupList();
   };
 
+  // 处理卡片操作成功
+  const handleCardSuccess = () => {
+    setShowCardDialog(false);
+    setEditCardData(null);
+    // 刷新分组列表
+    fetchGroupList();
+  };
+
   // 处理Tab切换
   const handleTabChange = (key) => {
     setActiveGroupId(key);
@@ -156,15 +173,6 @@ function PropertyRecord() {
     label: group.title,
     children: (
       <div className="tab_content">
-        <div className="tab_content_header">
-          <Button
-            type="text"
-            icon={<EditOutlined />}
-            onClick={() => handleEditGroup(group)}
-            className="edit_group_btn">
-            编辑分组
-          </Button>
-        </div>
         <div className="card_list_container">
           {group.cardList && group.cardList.length > 0 ? (
             <div className="card_grid">
@@ -222,9 +230,33 @@ function PropertyRecord() {
               <Button
                 className="create_btn"
                 type="primary"
+                icon={<PlusOutlined />}
                 onClick={handleCreateGroup}>
                 创建分组
               </Button>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={handleCreateCard}
+                className="create_card_btn">
+                创建卡片
+              </Button>
+              {groupList.length > 0 && (
+                <Button
+                  className="edit_group_btn"
+                  icon={<EditOutlined />}
+                  onClick={() => {
+                    const currentGroup = groupList.find(
+                      (g) => g.id === activeGroupId
+                    );
+                    if (currentGroup) {
+                      handleEditGroup(currentGroup);
+                    }
+                  }}>
+                  编辑当前分组
+                </Button>
+              )}
+
               <Button
                 className="logout_btn"
                 onClick={handleLogout}>
@@ -294,6 +326,13 @@ function PropertyRecord() {
         visible={showCardDetail}
         onClose={handleCloseCardDetail}
         cardData={selectedCard}
+      />
+
+      <PropertyCardDialog
+        visible={showCardDialog}
+        onCancel={() => setShowCardDialog(false)}
+        onSuccess={handleCardSuccess}
+        editData={editCardData}
       />
     </div>
   );
