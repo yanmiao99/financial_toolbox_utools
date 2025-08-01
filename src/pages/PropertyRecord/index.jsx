@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import './index.less';
 import LoginDialog from '@/components/LoginDialog';
-import PropertyWrapper from '@/components/PropertyWrapper';
 import PropertyGroupDialog from '@/components/PropertyGroupDialog';
+import PropertyCard from '@/components/PropertyCard';
 import {
   getPropertyGroupList,
   deletePropertyGroup,
@@ -155,7 +155,26 @@ function PropertyRecord() {
             编辑分组
           </Button>
         </div>
-        <PropertyWrapper groupId={group.id} />
+        <div className="card_list_container">
+          {group.cardList && group.cardList.length > 0 ? (
+            <div className="card_grid">
+              {group.cardList.map((card) => (
+                <PropertyCard
+                  key={card.id}
+                  cardData={card}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="empty_cards">
+              <div className="empty_icon">💳</div>
+              <div className="empty_title">暂无卡片数据</div>
+              <div className="empty_description">
+                该分组下还没有任何卡片记录
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     ),
     closable: true, // 允许关闭（删除）

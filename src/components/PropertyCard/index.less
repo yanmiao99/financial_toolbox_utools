@@ -1,0 +1,96 @@
+.property_card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .card_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .card_avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .card_title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #262626;
+    }
+  }
+
+  .card_content {
+    .total_amount {
+      margin-bottom: 24px;
+      text-align: center;
+      padding: 16px;
+      background: #fafafa;
+      border-radius: 6px;
+    }
+
+    .amount_details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 16px;
+
+      .income_section,
+      .expense_section {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        border-radius: 6px;
+      }
+
+      .income_section {
+        background: #f6ffed;
+        border: 1px solid #b7eb8f;
+      }
+
+      .expense_section {
+        background: #fff2f0;
+        border: 1px solid #ffb3b3;
+      }
+    }
+
+    .transaction_count {
+      text-align: center;
+      padding: 8px;
+      background: #f0f0f0;
+      border-radius: 4px;
+
+      .count_text {
+        color: #8c8c8c;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .property_card {
+    .card_content {
+      .amount_details {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  }
+}

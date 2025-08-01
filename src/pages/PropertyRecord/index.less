@@ -146,6 +146,13 @@
         font-size: 18px;
       }
     }
+
+    .card_list_container {
+      .card_grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
   }
 
   // 动画效果
@@ -190,6 +197,40 @@
           color: #40a9ff;
           background-color: #f6ffed;
         }
+      }
+    }
+  }
+
+  .card_list_container {
+    padding: 16px 0;
+
+    .card_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .empty_cards {
+      text-align: center;
+      padding: 60px 20px;
+      color: #8c8c8c;
+
+      .empty_icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      .empty_title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #595959;
+      }
+
+      .empty_description {
+        font-size: 14px;
+        color: #8c8c8c;
       }
     }
   }
