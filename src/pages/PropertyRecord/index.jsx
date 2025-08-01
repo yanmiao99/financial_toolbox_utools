@@ -134,6 +134,12 @@ function PropertyRecord() {
     });
   };
 
+  // 处理删除卡片
+  const handleDeleteCard = () => {
+    // 刷新分组列表以更新卡片数据
+    fetchGroupList();
+  };
+
   // 处理分组操作成功
   const handleGroupSuccess = () => {
     setShowGroupDialog(false);
@@ -181,6 +187,7 @@ function PropertyRecord() {
                   key={card.id}
                   cardData={card}
                   onClick={handleCardClick}
+                  onDelete={handleDeleteCard}
                 />
               ))}
             </div>

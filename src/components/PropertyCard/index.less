@@ -7,6 +7,10 @@
   &:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
+    
+    .card_header .card_actions {
+      opacity: 1;
+    }
   }
 
   .card_header {
@@ -32,6 +36,30 @@
       font-size: 16px;
       font-weight: 600;
       color: #262626;
+      flex: 1;
+    }
+    
+    .card_actions {
+      opacity: 0;
+      transition: all 0.3s ease;
+      
+      .delete_btn {
+        color: #ff4d4f;
+        border: none;
+        padding: 4px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: rgba(255, 77, 79, 0.1);
+          color: #d9363e;
+          transform: scale(1.1);
+        }
+        
+        &:active {
+          transform: scale(0.95);
+        }
+      }
     }
   }
 
