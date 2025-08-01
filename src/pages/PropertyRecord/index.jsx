@@ -5,6 +5,7 @@ import './index.less';
 import LoginDialog from '@/components/LoginDialog';
 import PropertyGroupDialog from '@/components/PropertyGroupDialog';
 import PropertyCard from '@/components/PropertyCard';
+import PropertyCardDetail from '@/components/PropertyCardDetail';
 import {
   getPropertyGroupList,
   deletePropertyGroup,
@@ -19,6 +20,8 @@ function PropertyRecord() {
   const [editGroupData, setEditGroupData] = useState(null);
   const [groupList, setGroupList] = useState([]);
   const [activeGroupId, setActiveGroupId] = useState(null);
+  const [showCardDetail, setShowCardDetail] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   // 检查登录状态
   const checkLoginStatus = () => {
@@ -87,6 +90,18 @@ function PropertyRecord() {
   const handleEditGroup = (group) => {
     setEditGroupData(group);
     setShowGroupDialog(true);
+  };
+
+  // 处理卡片点击
+  const handleCardClick = (cardData) => {
+    setSelectedCard(cardData);
+    setShowCardDetail(true);
+  };
+
+  // 关闭卡片详情
+  const handleCloseCardDetail = () => {
+    setShowCardDetail(false);
+    setSelectedCard(null);
   };
 
   // 处理删除分组
@@ -162,6 +177,7 @@ function PropertyRecord() {
                 <PropertyCard
                   key={card.id}
                   cardData={card}
+                  onClick={handleCardClick}
                 />
               ))}
             </div>
@@ -277,6 +293,12 @@ function PropertyRecord() {
         onCancel={() => setShowGroupDialog(false)}
         onSuccess={handleGroupSuccess}
         editData={editGroupData}
+      />
+
+      <PropertyCardDetail
+        visible={showCardDetail}
+        onClose={handleCloseCardDetail}
+        cardData={selectedCard}
       />
     </div>
   );

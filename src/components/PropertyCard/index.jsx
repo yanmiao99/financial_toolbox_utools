@@ -3,7 +3,7 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import './index.less';
 
-const PropertyCard = ({ cardData }) => {
+const PropertyCard = ({ cardData, onClick }) => {
   if (!cardData) return null;
 
   // 计算总金额
@@ -26,6 +26,7 @@ const PropertyCard = ({ cardData }) => {
     <Card 
       className="property_card"
       hoverable
+      onClick={() => onClick && onClick(cardData)}
       title={
         <div className="card_header">
           <div className="card_avatar">
@@ -97,7 +98,8 @@ PropertyCard.propTypes = {
         amount: PropTypes.number
       })
     )
-  })
+  }),
+  onClick: PropTypes.func
 };
 
 export default PropertyCard;
