@@ -76,8 +76,6 @@ function PropertyRecord() {
       );
     });
 
-    console.log('groupRes=======>', groupRes);
-
     setGroupList(groupRes);
 
     // 如果没有选中的分组且有分组数据，默认选中第一个
@@ -102,6 +100,8 @@ function PropertyRecord() {
   const handleCloseCardDetail = () => {
     setShowCardDetail(false);
     setSelectedCard(null);
+    // 刷新数据
+    fetchGroupList();
   };
 
   // 处理删除分组
@@ -113,19 +113,14 @@ function PropertyRecord() {
       cancelText: '取消',
       okType: 'danger',
       onOk: async () => {
-        try {
-          await deletePropertyGroup({ id: groupData.id });
-          message.success('删除分组成功');
-          // 如果删除的是当前选中的分组，重置选中状态
-          if (activeGroupId === groupData.id) {
-            setActiveGroupId(null);
-          }
-          // 重新获取分组列表
-          fetchGroupList();
-        } catch (error) {
-          console.error('删除分组失败:', error);
-          message.error('删除分组失败，请重试');
+        await deletePropertyGroup({ id: groupData.id });
+        message.success('删除分组成功');
+        // 如果删除的是当前选中的分组，重置选中状态
+        if (activeGroupId === groupData.id) {
+          setActiveGroupId(null);
         }
+        // 重新获取分组列表
+        fetchGroupList();
       },
     });
   };

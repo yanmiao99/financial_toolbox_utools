@@ -1,0 +1,48 @@
+.property_card_detail_dialog {
+  .detail_form {
+    .ant-form-item {
+      margin-bottom: 20px;
+    }
+
+    .ant-input-number {
+      &.ant-input-number-focused {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+
+    .ant-picker {
+      &.ant-picker-focused {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+
+    .ant-input {
+      &:focus,
+      &.ant-input-focused {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+
+    .ant-form-item-label > label {
+      font-weight: 500;
+      color: #262626;
+    }
+
+    .ant-form-item-explain-error {
+      font-size: 12px;
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .property_card_detail_dialog {
+    .ant-modal {
+      margin: 16px;
+      max-width: calc(100vw - 32px);
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { getCardDetailList, deleteCardDetail } from '@/api/property';
+import PropertyCardDetailDialog from '@/components/PropertyCardDetailDialog';
 import './index.less';
 import dayjs from 'dayjs';
 
@@ -11,9 +12,11 @@ const PropertyCardDetail = ({ visible, onClose, cardData }) => {
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({
     current: 1,
-    pageSize: 8,
-    total: 0,
+    pageSize: 10,
+    total: 0
   });
+  const [showDetailDialog, setShowDetailDialog] = useState(false);
+  const [editDetailData, setEditDetailData] = useState(null);
 
   // 获取卡片详情列表
   const fetchDetailList = async (page = 1, pageSize = 8) => {
@@ -133,16 +136,27 @@ const PropertyCardDetail = ({ visible, onClose, cardData }) => {
     },
   ];
 
-  // 编辑记录（暂时只是占位函数）
+  // 编辑记录
   const handleEdit = (record) => {
-    console.log('编辑记录:', record);
-    message.info('编辑功能待实现');
+    setEditDetailData(record);
+    setShowDetailDialog(true);
   };
 
-  // 添加新记录（暂时只是占位函数）
+  // 添加新记录
   const handleAdd = () => {
-    console.log('添加新记录');
-    message.info('添加功能待实现');
+    setEditDetailData(null);
+    setShowDetailDialog(true);
+  };
+
+  // 关闭详情对话框
+  const handleCloseDetailDialog = () => {
+    setShowDetailDialog(false);
+    setEditDetailData(null);
+  };
+
+  // 详情操作成功回调
+  const handleDetailSuccess = () => {
+    fetchDetailList(pagination.current, pagination.pageSize);
   };
 
   // 监听抽屉打开状态
@@ -200,6 +214,14 @@ const PropertyCardDetail = ({ visible, onClose, cardData }) => {
           />
         </div>
       </div>
+      
+      <PropertyCardDetailDialog
+        visible={showDetailDialog}
+        onClose={handleCloseDetailDialog}
+        onSuccess={handleDetailSuccess}
+        editData={editDetailData}
+        cardId={cardData?.id}
+      />
     </Drawer>
   );
 };
