@@ -1,0 +1,888 @@
+[
+  {
+    "id": 1,
+    "title": "存款统计",
+    "isDelete": 0,
+    "createdAt": "2024-10-12T00:49:11.000Z",
+    "updatedAt": "2024-10-12T00:49:11.000Z",
+    "userId": 1,
+    "propertyCards": [
+      {
+        "id": 3,
+        "title": "老妈",
+        "bgText": "老妈",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:50:41.000Z",
+        "updatedAt": "2024-10-12T03:49:40.000Z",
+        "userId": 1,
+        "propertyGroupId": 1
+      },
+      {
+        "id": 4,
+        "title": "姐公",
+        "bgText": "姐公",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:50:51.000Z",
+        "updatedAt": "2024-10-12T00:50:51.000Z",
+        "userId": 1,
+        "propertyGroupId": 1
+      },
+      {
+        "id": 36,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2025-02-18T14:43:22.000Z",
+        "updatedAt": "2025-02-18T14:43:22.000Z",
+        "userId": 1,
+        "propertyGroupId": 1
+      },
+      {
+        "id": 41,
+        "title": "111",
+        "bgText": "111",
+        "isDelete": 0,
+        "createdAt": "2025-07-31T16:30:38.000Z",
+        "updatedAt": "2025-07-31T16:30:38.000Z",
+        "userId": 1,
+        "propertyGroupId": 1
+      }
+    ],
+    "cardList": [
+      {
+        "id": 3,
+        "title": "老妈",
+        "bgText": "老妈",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:50:41.000Z",
+        "updatedAt": "2024-10-12T03:49:40.000Z",
+        "userId": 1,
+        "propertyGroupId": 1,
+        "propertyDetails": [
+          {
+            "amount": 143059.92
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "姐公",
+        "bgText": "姐公",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:50:51.000Z",
+        "updatedAt": "2024-10-12T00:50:51.000Z",
+        "userId": 1,
+        "propertyGroupId": 1,
+        "propertyDetails": [
+          {
+            "amount": 132487.54
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2025-02-18T14:43:22.000Z",
+        "updatedAt": "2025-02-18T14:43:22.000Z",
+        "userId": 1,
+        "propertyGroupId": 1,
+        "propertyDetails": [
+          {
+            "amount": 1000
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": -500
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": -500
+          },
+          {
+            "amount": -450
+          },
+          {
+            "amount": -500
+          },
+          {
+            "amount": -2050
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "title": "111",
+        "bgText": "111",
+        "isDelete": 0,
+        "createdAt": "2025-07-31T16:30:38.000Z",
+        "updatedAt": "2025-07-31T16:30:38.000Z",
+        "userId": 1,
+        "propertyGroupId": 1,
+        "propertyDetails": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "欠款统计",
+    "isDelete": 0,
+    "createdAt": "2024-10-12T00:49:16.000Z",
+    "updatedAt": "2024-10-12T00:49:16.000Z",
+    "userId": 1,
+    "propertyCards": [
+      {
+        "id": 7,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:53:29.000Z",
+        "updatedAt": "2025-07-09T12:22:18.000Z",
+        "userId": 1,
+        "propertyGroupId": 2
+      },
+      {
+        "id": 10,
+        "title": "文杰",
+        "bgText": "文杰",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T01:04:12.000Z",
+        "updatedAt": "2025-07-09T12:22:14.000Z",
+        "userId": 1,
+        "propertyGroupId": 2
+      },
+      {
+        "id": 12,
+        "title": "嘉颖",
+        "bgText": "明桂",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T01:36:50.000Z",
+        "updatedAt": "2025-06-20T16:51:30.000Z",
+        "userId": 1,
+        "propertyGroupId": 2
+      },
+      {
+        "id": 23,
+        "title": "智锋",
+        "bgText": "智锋",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T05:06:05.000Z",
+        "updatedAt": "2024-10-12T05:06:05.000Z",
+        "userId": 1,
+        "propertyGroupId": 2
+      },
+      {
+        "id": 32,
+        "title": "严峰",
+        "bgText": "严峰",
+        "isDelete": 0,
+        "createdAt": "2024-11-17T12:12:19.000Z",
+        "updatedAt": "2024-11-17T12:12:19.000Z",
+        "userId": 1,
+        "propertyGroupId": 2
+      }
+    ],
+    "cardList": [
+      {
+        "id": 7,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T00:53:29.000Z",
+        "updatedAt": "2025-07-09T12:22:18.000Z",
+        "userId": 1,
+        "propertyGroupId": 2,
+        "propertyDetails": [
+          {
+            "amount": -9754
+          },
+          {
+            "amount": -210
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 300
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": -1000
+          },
+          {
+            "amount": -500
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "文杰",
+        "bgText": "文杰",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T01:04:12.000Z",
+        "updatedAt": "2025-07-09T12:22:14.000Z",
+        "userId": 1,
+        "propertyGroupId": 2,
+        "propertyDetails": [
+          {
+            "amount": -1688
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": 200
+          },
+          {
+            "amount": 200
+          },
+          {
+            "amount": 300
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "嘉颖",
+        "bgText": "明桂",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T01:36:50.000Z",
+        "updatedAt": "2025-06-20T16:51:30.000Z",
+        "userId": 1,
+        "propertyGroupId": 2,
+        "propertyDetails": [
+          {
+            "amount": -2000
+          },
+          {
+            "amount": -7000
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": 300
+          },
+          {
+            "amount": 100
+          },
+          {
+            "amount": 600
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "智锋",
+        "bgText": "智锋",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T05:06:05.000Z",
+        "updatedAt": "2024-10-12T05:06:05.000Z",
+        "userId": 1,
+        "propertyGroupId": 2,
+        "propertyDetails": [
+          {
+            "amount": -7500
+          },
+          {
+            "amount": 625
+          },
+          {
+            "amount": 625
+          },
+          {
+            "amount": 625
+          },
+          {
+            "amount": -15346
+          },
+          {
+            "amount": 1280
+          },
+          {
+            "amount": 1920
+          },
+          {
+            "amount": 1300
+          },
+          {
+            "amount": 1910
+          },
+          {
+            "amount": 1910
+          },
+          {
+            "amount": -1000
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": -1000
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": 1915
+          },
+          {
+            "amount": 500
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "严峰",
+        "bgText": "严峰",
+        "isDelete": 0,
+        "createdAt": "2024-11-17T12:12:19.000Z",
+        "updatedAt": "2024-11-17T12:12:19.000Z",
+        "userId": 1,
+        "propertyGroupId": 2,
+        "propertyDetails": [
+          {
+            "amount": -200
+          },
+          {
+            "amount": 200
+          },
+          {
+            "amount": -300
+          },
+          {
+            "amount": 300
+          },
+          {
+            "amount": -300
+          },
+          {
+            "amount": -400
+          },
+          {
+            "amount": -300
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "套信用卡",
+    "isDelete": 0,
+    "createdAt": "2024-10-12T12:49:08.000Z",
+    "updatedAt": "2024-10-12T12:49:08.000Z",
+    "userId": 1,
+    "propertyCards": [
+      {
+        "id": 27,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T12:49:20.000Z",
+        "updatedAt": "2024-10-12T12:49:20.000Z",
+        "userId": 1,
+        "propertyGroupId": 13
+      },
+      {
+        "id": 29,
+        "title": "嘉颖",
+        "bgText": "明桂",
+        "isDelete": 0,
+        "createdAt": "2024-10-23T02:48:24.000Z",
+        "updatedAt": "2025-06-20T16:51:35.000Z",
+        "userId": 1,
+        "propertyGroupId": 13
+      },
+      {
+        "id": 34,
+        "title": "伟强手续费",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-12-12T07:03:37.000Z",
+        "updatedAt": "2024-12-12T07:03:37.000Z",
+        "userId": 1,
+        "propertyGroupId": 13
+      },
+      {
+        "id": 38,
+        "title": "泽龙",
+        "bgText": "泽龙",
+        "isDelete": 0,
+        "createdAt": "2025-05-28T06:06:25.000Z",
+        "updatedAt": "2025-05-28T06:06:25.000Z",
+        "userId": 1,
+        "propertyGroupId": 13
+      }
+    ],
+    "cardList": [
+      {
+        "id": 27,
+        "title": "伟强",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-10-12T12:49:20.000Z",
+        "updatedAt": "2024-10-12T12:49:20.000Z",
+        "userId": 1,
+        "propertyGroupId": 13,
+        "propertyDetails": [
+          {
+            "amount": -50000.11
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000.11
+          },
+          {
+            "amount": -50000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": 10000
+          },
+          {
+            "amount": -50000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 6000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 4000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": 5000
+          },
+          {
+            "amount": -39958.77
+          },
+          {
+            "amount": 3000
+          },
+          {
+            "amount": 3000
+          },
+          {
+            "amount": 9996
+          },
+          {
+            "amount": 9985
+          },
+          {
+            "amount": 9996
+          },
+          {
+            "amount": 3981.77
+          },
+          {
+            "amount": -49986.53
+          },
+          {
+            "amount": 9997
+          },
+          {
+            "amount": 9995
+          },
+          {
+            "amount": 9991
+          },
+          {
+            "amount": 9996
+          },
+          {
+            "amount": 9998
+          },
+          {
+            "amount": -49477.09
+          },
+          {
+            "amount": 9998
+          },
+          {
+            "amount": 9995
+          },
+          {
+            "amount": 9996
+          },
+          {
+            "amount": 9994
+          },
+          {
+            "amount": 9499
+          },
+          {
+            "amount": -49482
+          },
+          {
+            "amount": 2985
+          },
+          {
+            "amount": 9958
+          },
+          {
+            "amount": 2985
+          },
+          {
+            "amount": 9989
+          },
+          {
+            "amount": 2988
+          },
+          {
+            "amount": 9996
+          },
+          {
+            "amount": 10585
+          },
+          {
+            "amount": -48700
+          },
+          {
+            "amount": 10010
+          },
+          {
+            "amount": 12002
+          },
+          {
+            "amount": 12082
+          },
+          {
+            "amount": 14606.62
+          },
+          {
+            "amount": 1010
+          },
+          {
+            "amount": -48800.48
+          },
+          {
+            "amount": 10110
+          },
+          {
+            "amount": 10122
+          },
+          {
+            "amount": 16371
+          },
+          {
+            "amount": 11187
+          },
+          {
+            "amount": 44816
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "嘉颖",
+        "bgText": "明桂",
+        "isDelete": 0,
+        "createdAt": "2024-10-23T02:48:24.000Z",
+        "updatedAt": "2025-06-20T16:51:35.000Z",
+        "userId": 1,
+        "propertyGroupId": 13,
+        "propertyDetails": [
+          {
+            "amount": -17000
+          },
+          {
+            "amount": 1000
+          },
+          {
+            "amount": 16000
+          },
+          {
+            "amount": -17085
+          },
+          {
+            "amount": 1794
+          },
+          {
+            "amount": 1969
+          },
+          {
+            "amount": 1830
+          },
+          {
+            "amount": 1064
+          },
+          {
+            "amount": 1998
+          },
+          {
+            "amount": 1890
+          },
+          {
+            "amount": 6540
+          },
+          {
+            "amount": -21280
+          },
+          {
+            "amount": 1280
+          },
+          {
+            "amount": 5888
+          },
+          {
+            "amount": 10100
+          },
+          {
+            "amount": 4012
+          },
+          {
+            "amount": -22110
+          },
+          {
+            "amount": 10099
+          },
+          {
+            "amount": 12011
+          },
+          {
+            "amount": 22000
+          },
+          {
+            "amount": -22000
+          },
+          {
+            "amount": 968
+          },
+          {
+            "amount": 989
+          },
+          {
+            "amount": 198
+          },
+          {
+            "amount": 19845
+          },
+          {
+            "amount": -22000
+          },
+          {
+            "amount": 20999.74
+          },
+          {
+            "amount": -20999.74
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "title": "伟强手续费",
+        "bgText": "伟强",
+        "isDelete": 0,
+        "createdAt": "2024-12-12T07:03:37.000Z",
+        "updatedAt": "2024-12-12T07:03:37.000Z",
+        "userId": 1,
+        "propertyGroupId": 13,
+        "propertyDetails": [
+          {
+            "amount": -400
+          },
+          {
+            "amount": 400
+          },
+          {
+            "amount": -500
+          },
+          {
+            "amount": 500
+          },
+          {
+            "amount": -400
+          },
+          {
+            "amount": 400
+          },
+          {
+            "amount": -396
+          },
+          {
+            "amount": 396
+          },
+          {
+            "amount": -396
+          },
+          {
+            "amount": 396
+          },
+          {
+            "amount": -400
+          },
+          {
+            "amount": 400
+          },
+          {
+            "amount": 400
+          },
+          {
+            "amount": -400
+          },
+          {
+            "amount": -400
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "title": "泽龙",
+        "bgText": "泽龙",
+        "isDelete": 0,
+        "createdAt": "2025-05-28T06:06:25.000Z",
+        "updatedAt": "2025-05-28T06:06:25.000Z",
+        "userId": 1,
+        "propertyGroupId": 13,
+        "propertyDetails": [
+          {
+            "amount": 20070
+          },
+          {
+            "amount": -20070
+          },
+          {
+            "amount": 30362
+          },
+          {
+            "amount": -233.79
+          },
+          {
+            "amount": -15000
+          },
+          {
+            "amount": -15128.21
+          },
+          {
+            "amount": 25610
+          },
+          {
+            "amount": 12215
+          },
+          {
+            "amount": 2475
+          },
+          {
+            "amount": -20000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "租房",
+    "isDelete": 0,
+    "createdAt": "2025-06-18T16:22:20.000Z",
+    "updatedAt": "2025-06-18T16:22:20.000Z",
+    "userId": 1,
+    "propertyCards": [
+      {
+        "id": 39,
+        "title": "初次入住",
+        "bgText": "初次",
+        "isDelete": 0,
+        "createdAt": "2025-06-18T16:22:39.000Z",
+        "updatedAt": "2025-06-18T16:22:39.000Z",
+        "userId": 1,
+        "propertyGroupId": 14
+      }
+    ],
+    "cardList": [
+      {
+        "id": 39,
+        "title": "初次入住",
+        "bgText": "初次",
+        "isDelete": 0,
+        "createdAt": "2025-06-18T16:22:39.000Z",
+        "updatedAt": "2025-06-18T16:22:39.000Z",
+        "userId": 1,
+        "propertyGroupId": 14,
+        "propertyDetails": [
+          {
+            "amount": -3050
+          },
+          {
+            "amount": 3050
+          },
+          {
+            "amount": -160
+          },
+          {
+            "amount": -65
+          },
+          {
+            "amount": -55
+          },
+          {
+            "amount": -9.9
+          }
+        ]
+      }
+    ]
+  }
+]

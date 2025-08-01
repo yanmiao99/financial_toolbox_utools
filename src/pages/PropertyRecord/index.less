@@ -165,6 +165,58 @@
     animation: fadeInUp 0.6s ease-out;
   }
 
+  // 分组Tabs样式
+  .group_tabs {
+    // 使用 Ant Design 默认样式
+  }
+
+  // Tab标签样式已简化，使用默认样式
+
+  // Tab内容样式
+  .tab_content {
+    min-height: 300px;
+    
+    .tab_content_header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      
+      .edit_group_btn {
+        color: #1890ff;
+        
+        &:hover {
+          color: #40a9ff;
+          background-color: #f6ffed;
+        }
+      }
+    }
+  }
+
+  // 空状态样式
+  .empty_state {
+    text-align: center;
+    padding: 80px 40px;
+
+    .empty_icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .empty_title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .empty_description {
+      font-size: 14px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+  }
+
   // 加载状态
   .loading_state {
     display: flex;

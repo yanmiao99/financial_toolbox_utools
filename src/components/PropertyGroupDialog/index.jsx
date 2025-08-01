@@ -93,7 +93,7 @@ PropertyGroupDialog.propTypes = {
   onCancel: PropTypes.func,
   onSuccess: PropTypes.func,
   editData: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     title: PropTypes.string,
   }),
 };
